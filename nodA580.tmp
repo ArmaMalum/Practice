@@ -1,0 +1,38 @@
+[gd_scene load_steps=5 format=3 uid="uid://c6jj5qqxmn4uo"]
+
+[ext_resource type="Script" path="res://PlayerMovement.gd" id="1_ov2em"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_xrt6i"]
+
+[sub_resource type="Environment" id="Environment_hrhot"]
+
+[sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_mfe0h"]
+
+[node name="TestScene" type="Node2D"]
+position = Vector2(165, 100)
+
+[node name="Player" type="CharacterBody2D" parent="."]
+motion_mode = 1
+script = ExtResource("1_ov2em")
+
+[node name="Sprite2D" type="Sprite2D" parent="Player"]
+position = Vector2(4.76837e-06, -1.90735e-06)
+scale = Vector2(56, 56)
+texture = SubResource("CanvasTexture_xrt6i")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Player"]
+position = Vector2(-21, -32)
+scale = Vector2(0.530637, 0.489329)
+polygon = PackedVector2Array(39.575, 10.2181, -13.1917, 122.617, 92.3418, 122.617)
+
+[node name="Enemy" type="CharacterBody2D" parent="."]
+position = Vector2(403, 67)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Enemy"]
+position = Vector2(109, -125)
+scale = Vector2(1.00189, 0.756807)
+polygon = PackedVector2Array(-16, -17, -47, 10, -48, 60, -17, 84, 18, 60, 18, 19)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_hrhot")
+camera_attributes = SubResource("CameraAttributesPractical_mfe0h")

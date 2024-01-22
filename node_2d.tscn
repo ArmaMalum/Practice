@@ -1,0 +1,59 @@
+[gd_scene load_steps=6 format=3 uid="uid://c6jj5qqxmn4uo"]
+
+[ext_resource type="Script" path="res://PlayerMovement.gd" id="1_ov2em"]
+[ext_resource type="Script" path="res://Turret.gd" id="2_npkai"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_xrt6i"]
+
+[sub_resource type="Environment" id="Environment_hrhot"]
+
+[sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_mfe0h"]
+
+[node name="TestScene" type="Node2D"]
+
+[node name="Player" type="CharacterBody2D" parent="."]
+visible = false
+motion_mode = 1
+script = ExtResource("1_ov2em")
+
+[node name="Sprite2D" type="Sprite2D" parent="Player"]
+visible = false
+position = Vector2(4.76837e-06, -1.90735e-06)
+scale = Vector2(56, 56)
+texture = SubResource("CanvasTexture_xrt6i")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Player"]
+visible = false
+position = Vector2(-21, -32)
+scale = Vector2(0.530637, 0.489329)
+polygon = PackedVector2Array(39.575, 10.2181, -13.1917, 122.617, 92.3418, 122.617)
+
+[node name="Enemy" type="CharacterBody2D" parent="."]
+visible = false
+position = Vector2(403, 67)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_hrhot")
+camera_attributes = SubResource("CameraAttributesPractical_mfe0h")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="TurretBase" type="StaticBody2D" parent="."]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="TurretBase"]
+polygon = PackedVector2Array(14, -18, 27, -1, 14, 20, -14, 20, -28, 0, -16, -20)
+
+[node name="Polygon2D" type="Polygon2D" parent="TurretBase"]
+scale = Vector2(2.88539, 2.99037)
+polygon = PackedVector2Array(15.9424, -24.0773, 24.2601, -13.0419, 28, -2, 24.6067, 11.0354, 17.3287, 19.0612, 0.346573, 26.4181, -16.2889, 19.0612, -25.993, 11.7042, -29.8053, 0, -25.6464, -12.7075, -16.9821, -23.4085, 0, -29.0934)
+
+[node name="Turret" type="CharacterBody2D" parent="TurretBase"]
+script = ExtResource("2_npkai")
+
+[node name="Polygon2D" type="Polygon2D" parent="TurretBase/Turret"]
+position = Vector2(3, -5)
+scale = Vector2(2.88539, 2.99037)
+color = Color(1, 0.54902, 0.631373, 1)
+polygon = PackedVector2Array(-21.4875, -9.36339, 22.8738, 1.33763, -21.4875, 12.0386)
+
+[node name="Sprite2D" type="Sprite2D" parent="TurretBase"]
